@@ -10,6 +10,7 @@ app.use(cors());
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: false }))
 
+
 //Import routes
 const studiosRoute = require('./routes/studios');
 const filmsRoute = require('./routes/films');
@@ -21,11 +22,9 @@ app.use('/films', filmsRoute);
 app.use('/api/user', authRoute);
 app.use('/api/favoritos', favRoute);
 
+const API_PORT = process.env.API_PORT || 4000;
+app.use(express.static("public"));
 
-//Routes
-app.get('/', (req, res) => {
-    res.send('We are on home');
-});
 
 // Connection to DB!
 const connectionParams={
@@ -45,4 +44,4 @@ mongoose.connect(url,connectionParams)
 
 
 // Listening...
-app.listen(4000, () => console.log('Server up and running'));
+app.listen(API_PORT, () => console.log('Server up and running'));
