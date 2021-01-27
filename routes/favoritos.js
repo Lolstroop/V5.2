@@ -19,7 +19,7 @@ router.post('/', verify, async (req,res) => {
     try{
         const savedFav = await favoritos.save();    
         res.json(savedFav);
-        console.log("Done!!")
+        console.log("Done!!");
     }catch(err){
         res.json({message: err});
     }
